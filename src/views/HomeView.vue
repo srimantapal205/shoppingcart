@@ -43,9 +43,10 @@ export default {
       this.active.productDrawer = true;
       console.log(this.product);
     },
+    closeDrawer() {
+      this.active.productDrawer = false;
   },
-  closeDrawer(e) {
-    console.log(e)
   },
+  
 };
 </script>

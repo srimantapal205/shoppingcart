@@ -6,6 +6,16 @@
   <router-view/>
 </template>
 
+<script>
+export default {
+  name:"App",
+  mounted () {
+    this.$store.commit('updateCartFromLocalStorage');
+  },
+}
+
+</script>
+
 <style lang="scss">
 
 #app {

@@ -5,7 +5,6 @@
     id="offcanvasExample"
     aria-labelledby="offcanvasExampleLabel"
     :class="{ show: active }"
-    @click="$emit('closeProdectDrawer')"
   >
     <div class="drawer" :class="{ show: active }">
       <div class="offcanvas-header">
@@ -28,8 +27,8 @@
           <h4>{{ product_total }}</h4>
         </div>
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-primary">Add +</button>
-          <button type="button" class="btn btn-danger">Remove -</button>
+          <button type="button" class="btn btn-primary" @click="addTocart">Add +</button>
+          <button type="button" class="btn btn-danger" @click="removeFromcart">Remove -</button>
         </div>
       </div>
     </div>
@@ -46,12 +45,15 @@ export default {
       return require(`@/assets//img/${this.productDetails.image}`);
     },
     product_total() {
-      return 5;
+      return this.$store.getters.productQuentity(this.productDetails);
     },
   },
   methods: {
-    test(e) {
-        console.log(e)
+    addTocart() {
+        this.$store.commit('addToCart', this.productDetails)
+    },
+    removeFromcart() {
+        this.$store.commit('removeFromCart', this.productDetails)
     }
   },
 };
